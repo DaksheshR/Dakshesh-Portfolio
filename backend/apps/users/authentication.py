@@ -26,9 +26,15 @@ class CookieJWTAuthentication(JWTAuthentication):
         raw_token = request.COOKIES.get(cookie_name)
 
         if raw_token is not None:
-            validated_token = self.get_validated_token(raw_token)
-            user = self.get_user(validated_token)
-            return (user, validated_token)
+            try:
+                validated_token = self.get_validated_token(raw_token)
+                user = self.get_user(validated_token)
+                return (user, validated_token)
+            except Exception:
+                # Token is invalid/expired — return None so AllowAny
+                # views (login, public portfolio) still work.
+                # The frontend interceptor will handle refresh.
+                return None
 
         # Fall back to header-based auth (Authorization: Bearer <token>)
         return super().authenticate(request)
