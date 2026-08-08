@@ -34,7 +34,7 @@ async function fetchData<T>(
 ): Promise<T> {
   try {
     const res = await fetch(`${API_URL}${endpoint}`, {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds (ISR)
+      cache: "no-store", // Always fetch fresh data so admin changes reflect immediately
     });
     if (!res.ok) return fallback;
     return res.json();
