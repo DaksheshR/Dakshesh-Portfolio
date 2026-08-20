@@ -13,8 +13,10 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+// In production (Vercel), use relative "/api" so requests go through
+// Vercel rewrites (same-origin proxy to EC2). In development, NEXT_PUBLIC_API_URL
+// is set to "http://localhost:8000/api" in .env.local.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
