@@ -13,10 +13,9 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
-// In production (Vercel), use relative "/api" so requests go through
-// Vercel rewrites (same-origin proxy to EC2). In development, NEXT_PUBLIC_API_URL
-// is set to "http://localhost:8000/api" in .env.local.
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+// NEXT_PUBLIC_API_URL points directly to the Django backend on Render.
+// In development, set it to "http://localhost:8000/api" in .env.local.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,

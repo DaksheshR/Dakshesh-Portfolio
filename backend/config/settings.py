@@ -6,6 +6,8 @@ Production-ready configuration with environment variable support.
 
 import os
 from datetime import timedelta
+
+import dj_database_url
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -25,6 +27,11 @@ SECRET_KEY = os.getenv(
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+
+# Render sets RENDER_EXTERNAL_HOSTNAME automatically
+RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # ─── Application Definition ──────────────────────────────────────────────────
 
@@ -48,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Serve static files on Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",  # Must be before CommonMiddleware
     "django.middleware.common.CommonMiddleware",
@@ -78,18 +86,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # ─── Database ─────────────────────────────────────────────────────────────────
+# Render provides a DATABASE_URL env var. Fall back to individual vars for local dev.
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT", "5432"),
-        "OPTIONS": {
-            "sslmode": os.getenv("DB_SSLMODE", "disable"),
-        },
-    }
+    "default": dj_database_url.config(
+        default=(
+            f"postgresql://{os.getenv('DB_USER', 'postgres')}"
+            f":{os.getenv('DB_PASSWORD', '')}"
+            f"@{os.getenv('DB_HOST', 'localhost')}"
+            f":{os.getenv('DB_PORT', '5432')}"
+            f"/{os.getenv('DB_NAME', 'dakshesh_portfolio')}"
+        ),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 # ─── Custom User Model ───────────────────────────────────────────────────────
@@ -116,6 +125,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -156,12 +166,12 @@ SIMPLE_JWT = {
     "AUTH_COOKIE": "access_token",
     "AUTH_COOKIE_HTTP_ONLY": True,
     "AUTH_COOKIE_SECURE": not DEBUG,
-    "AUTH_COOKIE_SAMESITE": "Lax",
+    "AUTH_COOKIE_SAMESITE": "Lax" if DEBUG else "None",  # None for cross-origin (Vercel → Render)
     "AUTH_COOKIE_PATH": "/",
     "REFRESH_COOKIE": "refresh_token",
     "REFRESH_COOKIE_HTTP_ONLY": True,
     "REFRESH_COOKIE_SECURE": not DEBUG,
-    "REFRESH_COOKIE_SAMESITE": "Lax",
+    "REFRESH_COOKIE_SAMESITE": "Lax" if DEBUG else "None",  # None for cross-origin (Vercel → Render)
     "REFRESH_COOKIE_PATH": "/api/auth/refresh/",
 }
 
@@ -178,3 +188,7 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
     "FRONTEND_URL",
     "http://localhost:3000",
 ).split(",")
+
+# ─── Security (Production / Render) ─────────────────────────────────────────
+# Render terminates SSL at the load balancer and forwards HTTP to the app.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

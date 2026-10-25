@@ -22,11 +22,9 @@ import type {
   PaginatedResponse,
 } from "@/types";
 
-// Server components need the absolute backend URL (server-to-server, no CORS).
-// Client components use relative "/api" path which goes through Vercel rewrites.
-const API_URL = process.env.BACKEND_URL
-  ? `${process.env.BACKEND_URL}/api`
-  : "http://localhost:8000/api";
+// NEXT_PUBLIC_API_URL points directly to the Django backend on Render.
+// Available in both server and client components.
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
 /**
  * Fetch data from the API with graceful error handling.
