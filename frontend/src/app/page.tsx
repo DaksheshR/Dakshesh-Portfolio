@@ -23,8 +23,10 @@ import type {
 } from "@/types";
 
 // NEXT_PUBLIC_API_URL points directly to the Django backend on Render.
-// Available in both server and client components.
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+const rawApiUrl = (
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"
+).replace(/\/+$/, "");
+const API_URL = rawApiUrl.endsWith("/api") ? rawApiUrl : `${rawApiUrl}/api`;
 
 /**
  * Fetch data from the API with graceful error handling.

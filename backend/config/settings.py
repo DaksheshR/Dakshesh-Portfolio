@@ -26,12 +26,17 @@ SECRET_KEY = os.getenv(
 
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+    if host.strip()
+]
 
-# Render sets RENDER_EXTERNAL_HOSTNAME automatically
+# Render automatically sets RENDER_EXTERNAL_HOSTNAME; also allow any .onrender.com host
 RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS.append(".onrender.com")
 
 # ─── Application Definition ──────────────────────────────────────────────────
 
@@ -177,17 +182,26 @@ SIMPLE_JWT = {
 
 # ─── CORS ────────────────────────────────────────────────────────────────────
 
-CORS_ALLOWED_ORIGINS = os.getenv(
-    "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000",
-).split(",")
+CORS_ALLOWED_ORIGINS = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+    if origin.strip()
+]
+
+# Automatically allow any Vercel preview or production deployment domain
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https:\/\/.*\.vercel\.app$",
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = os.getenv(
-    "FRONTEND_URL",
-    "http://localhost:3000",
-).split(",")
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("FRONTEND_URL", "http://localhost:3000").split(",")
+    if origin.strip()
+]
+# Automatically allow all Vercel domains for CSRF as well
+CSRF_TRUSTED_ORIGINS.append("https://*.vercel.app")
 
 # ─── Security (Production / Render) ─────────────────────────────────────────
 # Render terminates SSL at the load balancer and forwards HTTP to the app.

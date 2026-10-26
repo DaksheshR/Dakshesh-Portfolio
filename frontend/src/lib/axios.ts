@@ -15,7 +15,10 @@ import axios, {
 
 // NEXT_PUBLIC_API_URL points directly to the Django backend on Render.
 // In development, set it to "http://localhost:8000/api" in .env.local.
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+const rawBaseUrl = (
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"
+).replace(/\/+$/, "");
+const API_BASE_URL = rawBaseUrl.endsWith("/api") ? rawBaseUrl : `${rawBaseUrl}/api`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
