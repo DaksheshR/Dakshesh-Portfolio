@@ -66,101 +66,104 @@ export default function Education({ data }: EducationProps) {
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative max-w-2xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-border-light dark:bg-border-dark" />
+        <div className="relative max-w-3xl mx-auto">
+          {/* Continuous vertical timeline line */}
+          <div className="absolute left-4 sm:left-5 top-3 bottom-3 w-0.5 bg-gradient-to-b from-primary-500 via-border-light dark:via-border-dark to-transparent" />
 
-          {entries.map((entry, index) => (
-            <motion.div
-              key={entry.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className={`relative flex items-start gap-6 mb-10 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary-500 border-[3px] border-surface-light dark:border-surface-dark z-10 mt-2" />
-
-              {/* Spacer for layout */}
-              <div className="hidden md:block md:w-1/2" />
-
-              {/* Content card */}
-              <div className="ml-10 md:ml-0 md:w-1/2 md:px-6">
-                <Card hover>
-                  {/* Date range */}
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <svg
-                      className="w-3.5 h-3.5 text-text-muted-light dark:text-text-muted-dark"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                    <span className="text-[11px] font-medium text-text-muted-light dark:text-text-muted-dark tabular-nums">
-                      {formatDate(entry.start_date)} —{" "}
-                      {entry.end_date ? formatDate(entry.end_date) : "Present"}
-                    </span>
-                  </div>
-
-                  {/* Institution info */}
-                  <div className="flex items-start gap-3 mb-3">
+          <div className="space-y-8 sm:space-y-10">
+            {entries.map((entry, index) => (
+              <motion.div
+                key={entry.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative flex items-start gap-4 sm:gap-6"
+              >
+                {/* Timeline Node / Icon badge */}
+                <div className="relative z-10 flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-surface-light dark:bg-surface-card-dark border-2 border-primary-500 flex items-center justify-center shadow-sm shadow-primary-500/20">
                     {entry.logo ? (
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={entry.logo}
                         alt={entry.institution}
-                        className="w-9 h-9 rounded-lg object-cover"
+                        className="w-full h-full rounded-full object-cover p-0.5"
                       />
                     ) : (
-                      <div className="w-9 h-9 rounded-lg bg-primary-500/10 flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={1.75}
+                      >
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+
+                {/* Content card */}
+                <div className="flex-1 min-w-0">
+                  <Card hover className="p-6 sm:p-7">
+                    {/* Header: Degree, Institution, and Date badge */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                      <div className="space-y-1">
+                        <h3 className="text-base sm:text-lg font-bold text-text-primary-light dark:text-text-primary-dark tracking-tight">
+                          {entry.degree}
+                        </h3>
+                        <p className="text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400">
+                          {entry.institution}
+                        </p>
+                        {entry.field_of_study && (
+                          <p className="text-xs sm:text-sm text-text-muted-light dark:text-text-muted-dark">
+                            {entry.field_of_study}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Date pill badge */}
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-500/20 text-xs font-medium self-start whitespace-nowrap">
                         <svg
-                          className="w-4 h-4 text-primary-500"
+                          className="w-3.5 h-3.5"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth={1.5}
                         >
-                          <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                          <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                           />
                         </svg>
+                        <span>
+                          {formatDate(entry.start_date)} —{" "}
+                          {entry.end_date ? formatDate(entry.end_date) : "Present"}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Description / CGPA / Details */}
+                    {entry.description && (
+                      <div className="pt-3.5 border-t border-border-light/70 dark:border-border-dark/70">
+                        <p className="text-xs sm:text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed whitespace-pre-line font-normal">
+                          {entry.description}
+                        </p>
                       </div>
                     )}
-                    <div>
-                      <h3 className="text-sm font-semibold text-text-primary-light dark:text-text-primary-dark">
-                        {entry.degree}
-                      </h3>
-                      <p className="text-xs text-primary-600 dark:text-primary-400 font-medium">
-                        {entry.institution}
-                      </p>
-                      <p className="text-[11px] text-text-muted-light dark:text-text-muted-dark">
-                        {entry.field_of_study}
-                      </p>
-                    </div>
-                  </div>
-
-                  {entry.description && (
-                    <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
-                      {entry.description}
-                    </p>
-                  )}
-                </Card>
-              </div>
-            </motion.div>
-          ))}
+                  </Card>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
