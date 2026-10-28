@@ -4,7 +4,6 @@
  */
 
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/context/ThemeContext";
 import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 
@@ -37,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <head>
         {/* Google Fonts: Inter + JetBrains Mono */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,26 +49,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
-        {/* Prevent flash of wrong theme */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('portfolio-theme');
-                if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                }
-              } catch {}
-            `,
-          }}
-        />
       </head>
-      <body className="antialiased">
-        <ThemeProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </ThemeProvider>
+      <body className="antialiased bg-[#09090b] text-[#fafafa]">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

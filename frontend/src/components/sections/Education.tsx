@@ -85,7 +85,7 @@ export default function Education({ data }: EducationProps) {
   return (
     <section
       id="education"
-      className="relative py-20 sm:py-28 overflow-hidden border-t border-border-light/60 dark:border-border-dark/60 bg-surface-light dark:bg-[#070816] transition-colors"
+      className="relative py-20 sm:py-28 overflow-hidden border-t border-[#27272a]/60 bg-[#070816]"
     >
       {/* Ambient background glows */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
@@ -103,19 +103,19 @@ export default function Education({ data }: EducationProps) {
           {/* Pill Badge */}
           <div className="flex items-center justify-center gap-2.5 mb-3.5">
             <span className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-primary-500/50" />
-            <span className="px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-500/25">
+            <span className="px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase bg-primary-500/10 text-primary-400 border border-primary-500/25">
               JOURNEY
             </span>
             <span className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-primary-500/50" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary-light dark:text-white mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
             My{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-indigo-500 to-purple-500 dark:from-primary-400 dark:via-indigo-400 dark:to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-indigo-400 to-purple-400">
               Education
             </span>
           </h2>
-          <p className="text-sm sm:text-base text-text-secondary-light dark:text-gray-400 max-w-md mx-auto">
+          <p className="text-sm sm:text-base text-gray-400 max-w-md mx-auto">
             Academic journey and qualifications
           </p>
         </motion.div>
@@ -177,7 +177,7 @@ export default function Education({ data }: EducationProps) {
                     >
                       {/* Timeline Node: Glowing Graduation Cap Badge */}
                       <div className="relative z-10 flex-shrink-0 mt-2">
-                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-surface-card-light dark:bg-[#0a0c1a] border-2 border-primary-500/60 group-hover:border-primary-400 flex items-center justify-center shadow-[0_0_16px_rgba(99,102,241,0.3)] group-hover:shadow-[0_0_24px_rgba(99,102,241,0.55)] transition-all duration-300">
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#0a0c1a] border-2 border-primary-500/60 group-hover:border-primary-400 flex items-center justify-center shadow-[0_0_16px_rgba(99,102,241,0.3)] group-hover:shadow-[0_0_24px_rgba(99,102,241,0.55)] transition-all duration-300">
                           {entry.logo ? (
                             /* eslint-disable-next-line @next/next/no-img-element */
                             <img
@@ -187,7 +187,7 @@ export default function Education({ data }: EducationProps) {
                             />
                           ) : (
                             <svg
-                              className="w-5 h-5 text-primary-500 dark:text-primary-400"
+                              className="w-5 h-5 text-primary-400"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -207,39 +207,39 @@ export default function Education({ data }: EducationProps) {
 
                       {/* Content Card with Watermark */}
                       <div className="flex-1 min-w-0">
-                        <div className="relative overflow-hidden rounded-2xl bg-white/95 dark:bg-[#0c0f24]/90 border border-border-light dark:border-primary-500/25 hover:border-primary-500/50 p-6 sm:p-7 shadow-lg shadow-black/5 dark:shadow-[0_4px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transition-all duration-300 hover:shadow-primary-500/10 hover:-translate-y-0.5">
+                        <div className="relative overflow-hidden rounded-2xl bg-[#0c0f24]/90 border border-primary-500/25 hover:border-primary-500/50 p-6 sm:p-7 shadow-[0_4px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transition-all duration-300 hover:shadow-primary-500/10 hover:-translate-y-0.5">
                           {/* University Building Watermark on right */}
                           <div className="absolute right-0 top-0 bottom-0 w-2/5 sm:w-1/2 pointer-events-none overflow-hidden select-none">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src="/images/university_bg.jpg"
                               alt=""
-                              className="w-full h-full object-cover object-right opacity-10 dark:opacity-20 filter grayscale contrast-125 [mask-image:linear-gradient(to_right,transparent,black_75%)]"
+                              className="w-full h-full object-cover object-right opacity-20 filter grayscale contrast-125 [mask-image:linear-gradient(to_right,transparent,black_75%)]"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent dark:from-[#0c0f24] dark:via-[#0c0f24]/60 dark:to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#0c0f24] via-[#0c0f24]/60 to-transparent" />
                           </div>
 
                           <div className="relative z-10">
                             {/* Top row: Degree title, college name, and degree type badge */}
                             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                               <div className="space-y-1">
-                                <h3 className="text-lg sm:text-xl font-bold text-text-primary-light dark:text-white tracking-tight">
+                                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
                                   {entry.degree}
                                 </h3>
-                                <p className="text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400">
+                                <p className="text-sm sm:text-base font-semibold text-primary-400">
                                   {entry.institution}
                                 </p>
                                 {entry.field_of_study && (
-                                  <p className="text-xs sm:text-sm text-text-muted-light dark:text-gray-400">
+                                  <p className="text-xs sm:text-sm text-gray-400">
                                     {entry.field_of_study}
                                   </p>
                                 )}
                               </div>
 
                               {/* Degree Level Pill Badge (e.g. Postgraduate / Undergraduate) */}
-                              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary-500/10 dark:bg-primary-500/15 text-primary-600 dark:text-primary-300 border border-primary-500/25 dark:border-primary-500/30 self-start whitespace-nowrap shadow-sm">
+                              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary-500/15 text-primary-300 border border-primary-500/30 self-start whitespace-nowrap shadow-sm">
                                 <svg
-                                  className="w-3.5 h-3.5 text-primary-500 dark:text-primary-400"
+                                  className="w-3.5 h-3.5 text-primary-400"
                                   viewBox="0 0 24 24"
                                   fill="currentColor"
                                 >
@@ -254,7 +254,7 @@ export default function Education({ data }: EducationProps) {
                               {/* CGPA */}
                               {cgpa && (
                                 <div className="flex items-center gap-3">
-                                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-500/10 dark:bg-primary-500/15 border border-primary-500/20 dark:border-primary-500/30 flex items-center justify-center text-primary-600 dark:text-primary-400 flex-shrink-0 shadow-sm">
+                                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-500/15 border border-primary-500/30 flex items-center justify-center text-primary-400 flex-shrink-0 shadow-sm">
                                     <svg
                                       className="w-4 h-4 sm:w-5 sm:h-5"
                                       fill="none"
@@ -270,10 +270,10 @@ export default function Education({ data }: EducationProps) {
                                     </svg>
                                   </div>
                                   <div>
-                                    <span className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-text-muted-light dark:text-gray-400">
+                                    <span className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-gray-400">
                                       CGPA
                                     </span>
-                                    <span className="block text-base sm:text-lg font-bold text-text-primary-light dark:text-white">
+                                    <span className="block text-base sm:text-lg font-bold text-white">
                                       {cgpa}
                                     </span>
                                   </div>
@@ -282,7 +282,7 @@ export default function Education({ data }: EducationProps) {
 
                               {/* Duration */}
                               <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-500/10 dark:bg-primary-500/15 border border-primary-500/20 dark:border-primary-500/30 flex items-center justify-center text-primary-600 dark:text-primary-400 flex-shrink-0 shadow-sm">
+                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-500/15 border border-primary-500/30 flex items-center justify-center text-primary-400 flex-shrink-0 shadow-sm">
                                   <svg
                                     className="w-4 h-4 sm:w-5 sm:h-5"
                                     fill="none"
@@ -298,10 +298,10 @@ export default function Education({ data }: EducationProps) {
                                   </svg>
                                 </div>
                                 <div>
-                                  <span className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-text-muted-light dark:text-gray-400">
+                                  <span className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-gray-400">
                                     Duration
                                   </span>
-                                  <span className="block text-xs sm:text-sm font-semibold text-text-secondary-light dark:text-gray-200">
+                                  <span className="block text-xs sm:text-sm font-semibold text-gray-200">
                                     {formatDate(entry.start_date)} —{" "}
                                     {entry.end_date ? formatDate(entry.end_date) : "Present"}
                                   </span>
@@ -311,8 +311,8 @@ export default function Education({ data }: EducationProps) {
 
                             {/* Additional description if present */}
                             {extraDesc && (
-                              <div className="mt-4 pt-3.5 border-t border-border-light/70 dark:border-primary-500/15">
-                                <p className="text-xs sm:text-sm text-text-secondary-light dark:text-gray-300 leading-relaxed font-normal">
+                              <div className="mt-4 pt-3.5 border-t border-primary-500/15">
+                                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
                                   {extraDesc}
                                 </p>
                               </div>

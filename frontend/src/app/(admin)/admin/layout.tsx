@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import AdminSidebar from "@/components/layout/AdminSidebar";
-import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function AdminLayout({
   children,
@@ -50,16 +49,15 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-screen bg-surface-light dark:bg-surface-dark">
+    <div className="flex min-h-screen bg-[#09090b] text-[#fafafa]">
       <AdminSidebar />
 
       <div className="flex-1 flex flex-col">
         {/* Top bar */}
-        <header className="h-14 border-b border-border-light dark:border-border-dark bg-white dark:bg-surface-card-dark flex items-center justify-between px-6">
-          <h2 className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">
+        <header className="h-14 border-b border-[#27272a] bg-[#111113] flex items-center justify-between px-6">
+          <h2 className="text-sm font-medium text-[#a1a1aa]">
             Admin Panel
           </h2>
-          <ThemeToggle />
         </header>
 
         {/* Page content */}

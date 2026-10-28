@@ -13,11 +13,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variantStyles: Record<string, string> = {
-  default:
-    "bg-white dark:bg-surface-card-dark border border-border-light dark:border-border-dark",
+  default: "bg-[#111113] border border-[#27272a]",
   glass: "glass",
-  bordered:
-    "bg-white dark:bg-surface-card-dark border border-primary-200/60 dark:border-primary-900/60",
+  bordered: "bg-[#111113] border border-primary-500/30",
 };
 
 const paddingStyles: Record<string, string> = {
