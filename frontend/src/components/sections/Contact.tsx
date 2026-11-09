@@ -122,7 +122,7 @@ export default function Contact() {
                     Email
                   </h3>
                   <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
-                    dakshesh@example.com
+                    rdakshesh800@gmail.com
                   </p>
                 </div>
               </div>

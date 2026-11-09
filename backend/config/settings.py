@@ -188,9 +188,11 @@ CORS_ALLOWED_ORIGINS = [
     if origin.strip()
 ]
 
-# Automatically allow any Vercel preview or production deployment domain
+# Automatically allow any Vercel deployment domain and local dev ports
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https:\/\/.*\.vercel\.app$",
+    r"^http:\/\/localhost:\d+$",
+    r"^http:\/\/127\.0\.0\.1:\d+$",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -200,8 +202,12 @@ CSRF_TRUSTED_ORIGINS = [
     for origin in os.getenv("FRONTEND_URL", "http://localhost:3000").split(",")
     if origin.strip()
 ]
-# Automatically allow all Vercel domains for CSRF as well
-CSRF_TRUSTED_ORIGINS.append("https://*.vercel.app")
+# Automatically allow all Vercel domains and local dev for CSRF as well
+CSRF_TRUSTED_ORIGINS.extend([
+    "https://*.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+])
 
 # ─── Security (Production / Render) ─────────────────────────────────────────
 # Render terminates SSL at the load balancer and forwards HTTP to the app.
