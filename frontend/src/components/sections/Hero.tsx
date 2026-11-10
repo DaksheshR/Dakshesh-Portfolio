@@ -79,13 +79,13 @@ export default function Hero({ data }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/60 dark:bg-surface-card-dark/60 mb-8"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gray-700/60 bg-black/40 backdrop-blur-md mb-8 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_#10b981]" />
           </span>
-          <span className="text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark">
+          <span className="text-xs font-medium text-gray-300">
             Available for opportunities
           </span>
         </motion.div>
