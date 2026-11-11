@@ -137,8 +137,9 @@ export default function AdminSkillsPage() {
             <option value="backend">Backend</option>
             <option value="database">Database</option>
             <option value="devops">DevOps</option>
-            <option value="tools">Tools</option>
+            <option value="tools">Tools and Technologies</option>
             <option value="other">Other</option>
+            <option value="languages">Programming Languages</option>
           </select>
         </div>
 

@@ -59,7 +59,9 @@ export type SkillCategory =
   | "database"
   | "devops"
   | "tools"
-  | "other";
+  | "other"
+  | "languages"
+  | "programming_languages";
 
 export interface Skill {
   id: number;

@@ -119,12 +119,14 @@ class Skill(TimeStampedModel):
         BACKEND = "backend", "Backend"
         DATABASE = "database", "Database"
         DEVOPS = "devops", "DevOps"
-        TOOLS = "tools", "Tools"
+        TOOLS = "tools", "Tools and Technologies"
         OTHER = "other", "Other"
+        LANGUAGES = "languages", "Programming Languages"
+        PROGRAMMING_LANGUAGES = "programming_languages", "Programming Languages"
 
     name = models.CharField(max_length=100)
     category = models.CharField(
-        max_length=20,
+        max_length=30,
         choices=Category.choices,
         default=Category.OTHER,
     )

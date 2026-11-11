@@ -13,49 +13,50 @@ interface AboutProps {
 }
 
 export default function About({ data }: AboutProps) {
-  const description =
-    data?.description ||
-    "An MSc Computer Science student and full-stack developer passionate about building modern, scalable web applications, solving real-world problems, and exploring emerging technologies like AI.";
+  const defaultDescription = `💻 Computer Science Graduate | MSc Student
 
-  const projectsCount = data?.projects_completed ? `${data.projects_completed}+` : "15+";
-  const techCount = data?.happy_clients ? `${data.happy_clients}+` : "10+";
+I am a Computer Science graduate currently pursuing my MSc CS, with a strong interest in software development and problem-solving. I am passionate about continuous learning and improving my skills through hands-on projects and coding practice.
+
+⚙️ I apply Object-Oriented Programming (OOP), Data Structures, and Algorithms to solve real-world problems, and follow best practices including version control (Git/GitHub) and debugging.
+
+📈 I believe in consistency over perfection and focus on growing every day.
+
+🚀 Currently seeking entry-level / graduate software engineer opportunities where I can contribute and grow.`;
+
+  const rawDescription = data?.description || defaultDescription;
+  const description = rawDescription
+    .replace(/\\r\\n/g, "\n")
+    .replace(/\\n/g, "\n")
+    .replace(/\r\n/g, "\n");
+
+  const projectsCount = data?.projects_completed != null ? `${data.projects_completed}+` : "1+";
+  const yearsExperience = data?.years_experience ?? 0;
+  const happyClients = data?.happy_clients ?? 0;
 
   return (
     <section
       id="about"
-      className="relative py-20 sm:py-28 overflow-hidden bg-[#070816] text-white border-t border-[#27272a]/60 select-none"
+      className="relative overflow-hidden bg-[#070816] text-white border-t border-[#27272a]/60 select-none"
     >
       {/* ─── Ambient Glow Effects ─── */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-purple-600/15 rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* ─── Top Bar: 01 / ABOUT ME + Available Badge ─── */}
+      <div className="section-container relative z-10">
+        {/* ─── Section Header ─── */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 sm:mb-16"
+          className="text-center w-full mb-12 sm:mb-16"
         >
-          {/* Left: 01 / ABOUT ME and horizontal accent line */}
-          <div className="flex items-center gap-3">
-            <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-purple-400 uppercase">
-              01 / ABOUT ME
-            </span>
-            <div className="h-[1px] w-20 sm:w-28 bg-gradient-to-r from-purple-500/60 to-transparent" />
-          </div>
-
-          {/* Right: Available for Opportunities pill badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gray-700/60 bg-black/40 backdrop-blur-md self-start sm:self-auto shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_#10b981]" />
-            </span>
-            <span className="text-[11px] sm:text-xs text-gray-300 font-medium">
-              Available for Opportunities
-            </span>
-          </div>
+          <h2 className="section-title text-center">
+            About <span className="gradient-text">Me</span>
+          </h2>
+          <p className="section-subtitle text-center mx-auto">
+            Get to know the person behind the code
+          </p>
         </motion.div>
 
         {/* ─── Main Two-Column Layout ─── */}
@@ -90,10 +91,10 @@ export default function About({ data }: AboutProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="lg:col-span-7 space-y-6"
+            className="lg:col-span-7"
           >
             {/* Greeting */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mb-3">
               <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] text-purple-400 uppercase">
                 HELLO, I&apos;M DAKSHESH
               </span>
@@ -101,7 +102,7 @@ export default function About({ data }: AboutProps) {
             </div>
 
             {/* Main Headline with Accent Line */}
-            <div className="space-y-2">
+            <div className="space-y-3 mb-6 sm:mb-8">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
                 I turn ideas into{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-purple-400">
@@ -111,82 +112,20 @@ export default function About({ data }: AboutProps) {
               <div className="h-[2px] w-28 bg-gradient-to-r from-purple-500/70 via-indigo-500/50 to-transparent" />
             </div>
 
-            {/* Bio Paragraph */}
-            <p className="text-sm sm:text-[15px] text-gray-300 leading-relaxed max-w-xl font-normal">
+            {/* Explicit line feed spacer between headline and description */}
+            <div className="h-4 sm:h-6" aria-hidden="true" />
+
+            {/* Bio Description with full whitespace & line-feed preservation like <pre> */}
+            <div className="text-sm sm:text-[15px] text-gray-300 leading-relaxed max-w-xl font-normal whitespace-pre-wrap font-sans">
               {description}
-            </p>
-
-            {/* Tech Interest Badges */}
-            <div className="flex flex-wrap gap-2.5 pt-1">
-              {/* Full Stack */}
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-gray-200 text-xs sm:text-[13px] font-medium shadow-sm hover:border-purple-400/60 hover:bg-purple-500/15 transition-colors">
-                <svg
-                  className="w-3.5 h-3.5 text-purple-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="m12 2 10 5-10 5-10-5Z" />
-                  <path d="m2 12 10 5 10-5" />
-                  <path d="m2 17 10 5 10-5" />
-                </svg>
-                Full Stack
-              </span>
-
-              {/* AI / ML */}
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-gray-200 text-xs sm:text-[13px] font-medium shadow-sm hover:border-purple-400/60 hover:bg-purple-500/15 transition-colors">
-                <svg
-                  className="w-3.5 h-3.5 text-purple-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect width="16" height="16" x="4" y="4" rx="2" />
-                  <rect width="6" height="6" x="9" y="9" rx="1" />
-                  <path d="M15 2v2M9 2v2M20 15h2M20 9h2M9 20v2M15 20v2M2 9h2M2 15h2" />
-                </svg>
-                AI / ML
-              </span>
-
-              {/* System Design */}
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-gray-200 text-xs sm:text-[13px] font-medium shadow-sm hover:border-purple-400/60 hover:bg-purple-500/15 transition-colors">
-                <svg
-                  className="w-3.5 h-3.5 text-purple-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="16" y="16" width="6" height="6" rx="1" />
-                  <rect x="2" y="16" width="6" height="6" rx="1" />
-                  <rect x="9" y="2" width="6" height="6" rx="1" />
-                  <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
-                  <path d="M12 12V8" />
-                </svg>
-                System Design
-              </span>
-
-              {/* DSA */}
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-gray-200 text-xs sm:text-[13px] font-medium shadow-sm hover:border-purple-400/60 hover:bg-purple-500/15 transition-colors">
-                <svg
-                  className="w-3.5 h-3.5 text-purple-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <polyline points="16 18 22 12 16 6" />
-                  <polyline points="8 6 2 12 8 18" />
-                </svg>
-                DSA
-              </span>
             </div>
 
-            {/* Stats Row */}
-            <div className="pt-4 border-t border-gray-800/80">
-              <div className="grid grid-cols-3 gap-3 sm:gap-6 items-center">
+            {/* Explicit line feed spacer between description and stats */}
+            <div className="h-4 sm:h-6" aria-hidden="true" />
+
+            {/* Stats Row with top margin above divider and padding below */}
+            <div className="mt-4 sm:mt-6 pt-6 sm:pt-8 border-t border-gray-800/80">
+              <div className="flex flex-wrap items-center gap-6 sm:gap-10">
                 {/* Stat 1: Degree */}
                 <div className="flex items-center gap-3">
                   <svg
@@ -210,8 +149,8 @@ export default function About({ data }: AboutProps) {
                   </div>
                 </div>
 
-                {/* Stat 2: Projects */}
-                <div className="flex items-center gap-3 pl-2 sm:pl-4 border-l border-gray-800/80">
+                {/* Stat 2: Projects Built (Dynamic) */}
+                <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-gray-800/80">
                   <svg
                     className="w-5 h-5 text-purple-400 flex-shrink-0"
                     viewBox="0 0 24 24"
@@ -231,28 +170,55 @@ export default function About({ data }: AboutProps) {
                   </div>
                 </div>
 
-                {/* Stat 3: Technologies */}
-                <div className="flex items-center gap-3 pl-2 sm:pl-4 border-l border-gray-800/80">
-                  <svg
-                    className="w-5 h-5 text-purple-400 flex-shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                  >
-                    <path d="m12 2 10 5-10 5-10-5Z" />
-                    <path d="m2 12 10 5 10-5" />
-                    <path d="m2 17 10 5 10-5" />
-                  </svg>
-                  <div>
-                    <div className="text-base sm:text-lg font-bold text-white tracking-tight">
-                      {techCount}
-                    </div>
-                    <div className="text-[10px] sm:text-xs text-gray-400">
-                      Technologies
+                {/* Stat 3: Years Experience (Dynamic if > 0) */}
+                {yearsExperience > 0 && (
+                  <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-gray-800/80">
+                    <svg
+                      className="w-5 h-5 text-purple-400 flex-shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <div>
+                      <div className="text-base sm:text-lg font-bold text-white tracking-tight">
+                        {yearsExperience}+
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-gray-400">
+                        Years Experience
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {/* Stat 4: Happy Clients (Dynamic if > 0) */}
+                {happyClients > 0 && (
+                  <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-gray-800/80">
+                    <svg
+                      className="w-5 h-5 text-purple-400 flex-shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                    >
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    <div>
+                      <div className="text-base sm:text-lg font-bold text-white tracking-tight">
+                        {happyClients}+
+                      </div>
+                      <div className="text-[10px] sm:text-xs text-gray-400">
+                        Happy Clients
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
