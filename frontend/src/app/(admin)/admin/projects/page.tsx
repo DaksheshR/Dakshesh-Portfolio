@@ -19,6 +19,7 @@ const emptyForm = {
   description: "",
   short_description: "",
   tech_stack: "" as string, // comma-separated input
+  image: "",
   live_url: "",
   github_url: "",
   is_featured: false,
@@ -59,6 +60,7 @@ export default function AdminProjectsPage() {
       description: project.description,
       short_description: project.short_description,
       tech_stack: project.tech_stack.join(", "),
+      image: project.image || "",
       live_url: project.live_url,
       github_url: project.github_url,
       is_featured: project.is_featured,
@@ -115,6 +117,17 @@ export default function AdminProjectsPage() {
   };
 
   const columns = [
+    {
+      key: "image",
+      label: "Preview",
+      render: (p: Project) =>
+        p.image ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img src={p.image} alt={p.title} className="w-10 h-7 object-cover rounded border border-gray-700" />
+        ) : (
+          <span className="text-text-muted-light dark:text-text-muted-dark text-xs">—</span>
+        ),
+    },
     { key: "title", label: "Title" },
     {
       key: "is_featured",
@@ -159,6 +172,7 @@ export default function AdminProjectsPage() {
         <Input id="project-short-desc" label="Short Description" name="short_description" value={form.short_description} onChange={handleChange} placeholder="One-liner description" />
         <Input id="project-description" label="Full Description" name="description" multiline value={form.description} onChange={handleChange} placeholder="Detailed project description..." />
         <Input id="project-tech" label="Tech Stack (comma-separated)" name="tech_stack" value={form.tech_stack} onChange={handleChange} placeholder="React, Django, PostgreSQL" />
+        <Input id="project-image" label="Project Image URL (e.g. /images/weather_app.png or https://...)" name="image" value={form.image} onChange={handleChange} placeholder="/images/weather_app.png or https://..." />
         <Input id="project-live" label="Live URL" name="live_url" value={form.live_url} onChange={handleChange} placeholder="https://..." />
         <Input id="project-github" label="GitHub URL" name="github_url" value={form.github_url} onChange={handleChange} placeholder="https://github.com/..." />
 

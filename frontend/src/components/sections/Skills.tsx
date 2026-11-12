@@ -357,6 +357,24 @@ function TechIcon({ name, fallbackIcon }: { name: string; fallbackIcon?: string 
     );
   }
 
+  // FastAPI
+  if (n.includes("fastapi") || n.includes("fast api")) {
+    return (
+      <svg className="w-5 h-5 text-[#009688]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S5.373 0 12 0zm-.75 4.5h1.5v6.75H18l-6.75 8.25v-6.75H6.75l4.5-8.25z" />
+      </svg>
+    );
+  }
+
+  // VS Code / Visual Studio Code
+  if (n.includes("vscode") || n.includes("vs code") || n.includes("visual studio")) {
+    return (
+      <svg className="w-5 h-5 text-[#007acc]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .32 8.68l3.666 3.32-3.666 3.32a1 1 0 0 0 .007 1.42l1.322 1.202a1 1 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z" />
+      </svg>
+    );
+  }
+
   // REST API / GraphQL / General APIs
   if (n.includes("api") || n.includes("rest") || n.includes("graph") || n.includes("postman")) {
     return (
@@ -495,6 +513,9 @@ export default function Skills({ data }: SkillsProps) {
           })}
         </motion.div>
 
+        {/* Dedicated spacing between filter tabs row and category subtitles */}
+        <div className="h-4 sm:h-6" aria-hidden="true" />
+
         {/* Categorized Cards Content */}
         <AnimatePresence mode="wait">
           {selectedCategory === "all" ? (
@@ -505,16 +526,17 @@ export default function Skills({ data }: SkillsProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="space-y-10 sm:space-y-12"
+              className="flex flex-col gap-5 sm:gap-7"
             >
               {availableCategories.map((cat, groupIdx) => {
                 const config = categoryConfig[cat] || categoryConfig.other;
                 const skills = groupedSkills[cat] || [];
+                const isLast = groupIdx === availableCategories.length - 1;
 
                 return (
-                  <div key={cat} className="space-y-4">
+                  <div key={cat} className="flex flex-col">
                     {/* Category Label Header */}
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
                       <span className="text-base sm:text-lg">{config.icon}</span>
                       <h3 className="text-sm sm:text-base font-semibold text-gray-200 tracking-wide">
                         {config.label}
@@ -528,6 +550,11 @@ export default function Skills({ data }: SkillsProps) {
                         <SkillCard key={skill.id || `${cat}-${i}`} skill={skill} index={i + groupIdx * 4} />
                       ))}
                     </div>
+
+                    {/* Explicit line feed spacer between categories (reduced ~30%) */}
+                    {!isLast && (
+                      <div className="h-4 sm:h-5" aria-hidden="true" />
+                    )}
                   </div>
                 );
               })}
@@ -540,7 +567,7 @@ export default function Skills({ data }: SkillsProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mt-2 sm:mt-4"
             >
               {(groupedSkills[selectedCategory] || []).map((skill, i) => (
                 <SkillCard key={skill.id || i} skill={skill} index={i} />

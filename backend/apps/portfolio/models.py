@@ -177,6 +177,7 @@ class Project(TimeStampedModel):
     )
     image = models.ImageField(
         upload_to="projects/",
+        max_length=500,
         blank=True,
         null=True,
         help_text="Project screenshot or thumbnail",

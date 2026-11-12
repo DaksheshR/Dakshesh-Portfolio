@@ -14,8 +14,42 @@ from .models import (
 )
 
 
+class HybridImageField(serializers.ImageField):
+    """
+    Flexible image field that accepts:
+    - Direct image URLs (e.g. Cloudinary, AWS S3, external URLs: https://...)
+    - Local static paths (e.g. /images/...)
+    - Standard file uploads (multipart/form-data)
+    """
+
+    def to_internal_value(self, data):
+        if not data:
+            return None
+        # If it's a URL or string path, accept it directly without error!
+        if isinstance(data, str):
+            val = data.strip()
+            if val.startswith("http://") or val.startswith("https://") or val.startswith("/") or val.startswith("data:"):
+                return val
+            if not val:
+                return None
+        # Otherwise, run standard DRF ImageField file validation
+        return super().to_internal_value(data)
+
+    def to_representation(self, value):
+        if not value:
+            return None
+        val_str = str(getattr(value, "name", value))
+        # If already an external URL or static path, return it directly
+        if val_str.startswith("http://") or val_str.startswith("https://") or val_str.startswith("/"):
+            return val_str
+        # Otherwise, return standard Django media URL
+        return super().to_representation(value)
+
+
 class HeroSectionSerializer(serializers.ModelSerializer):
     """Serializer for the Hero section."""
+
+    profile_image = HybridImageField(required=False, allow_null=True)
 
     class Meta:
         model = HeroSection
@@ -37,6 +71,8 @@ class HeroSectionSerializer(serializers.ModelSerializer):
 
 class AboutSectionSerializer(serializers.ModelSerializer):
     """Serializer for the About section."""
+
+    image = HybridImageField(required=False, allow_null=True)
 
     class Meta:
         model = AboutSection
@@ -79,6 +115,8 @@ class SkillSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     """Serializer for portfolio projects."""
+
+    image = HybridImageField(required=False, allow_null=True)
 
     class Meta:
         model = Project
