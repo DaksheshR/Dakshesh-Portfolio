@@ -3,8 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DESIGN TOKEN SYSTEM — Premium Portfolio
-   Inspired by Vercel, Linear, Stripe, shadcn/ui
+   DESIGN TOKEN SYSTEM — Unified Premium Portfolio
+   Deep navy/indigo-purple futuristic design language
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @theme {
@@ -26,44 +26,44 @@
   --color-accent-500: #f59e0b;
   --color-accent-600: #d97706;
 
-  /* ── Surfaces (Dark Theme) ──────────────────────────────────────────────── */
-  --color-surface: #09090b;
-  --color-surface-card: #111113;
-  --color-surface-elevated: #18181b;
-  --color-surface-muted: #1a1a1f;
+  /* ── Surfaces (Deep Navy System) ─────────────────────────────────────── */
+  --color-surface: #070816;
+  --color-surface-card: #0c0f24;
+  --color-surface-elevated: #111631;
+  --color-surface-muted: #0a0d1e;
 
   /* Backward compatibility tokens mapped to dark */
-  --color-surface-light: #09090b;
-  --color-surface-dark: #09090b;
-  --color-surface-card-light: #111113;
-  --color-surface-card-dark: #111113;
-  --color-surface-elevated-light: #18181b;
-  --color-surface-elevated-dark: #18181b;
-  --color-surface-muted-light: #1a1a1f;
-  --color-surface-muted-dark: #1a1a1f;
+  --color-surface-light: #070816;
+  --color-surface-dark: #070816;
+  --color-surface-card-light: #0c0f24;
+  --color-surface-card-dark: #0c0f24;
+  --color-surface-elevated-light: #111631;
+  --color-surface-elevated-dark: #111631;
+  --color-surface-muted-light: #0a0d1e;
+  --color-surface-muted-dark: #0a0d1e;
 
-  /* ── Text (Dark Theme) ──────────────────────────────────────────────────── */
-  --color-text-primary: #fafafa;
+  /* ── Text ─────────────────────────────────────────────────────────────── */
+  --color-text-primary: #f0f0f5;
   --color-text-secondary: #a1a1aa;
   --color-text-muted: #71717a;
 
   /* Backward compatibility tokens mapped to dark */
-  --color-text-primary-light: #fafafa;
-  --color-text-primary-dark: #fafafa;
+  --color-text-primary-light: #f0f0f5;
+  --color-text-primary-dark: #f0f0f5;
   --color-text-secondary-light: #a1a1aa;
   --color-text-secondary-dark: #a1a1aa;
   --color-text-muted-light: #71717a;
   --color-text-muted-dark: #71717a;
 
-  /* ── Borders (Dark Theme) ───────────────────────────────────────────────── */
-  --color-border: #27272a;
-  --color-border-hover: #3f3f46;
+  /* ── Borders (Navy System) ────────────────────────────────────────────── */
+  --color-border: #1b2144;
+  --color-border-hover: #2d3a6e;
 
   /* Backward compatibility tokens mapped to dark */
-  --color-border-light: #27272a;
-  --color-border-dark: #27272a;
-  --color-border-hover-light: #3f3f46;
-  --color-border-hover-dark: #3f3f46;
+  --color-border-light: #1b2144;
+  --color-border-dark: #1b2144;
+  --color-border-hover-light: #2d3a6e;
+  --color-border-hover-dark: #2d3a6e;
 
   /* ── Fonts ──────────────────────────────────────────────────────────────── */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -212,18 +212,18 @@ body {
 .delay-600 { animation-delay: 0.6s; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   GLASSMORPHISM
+   GLASSMORPHISM — Navy/Indigo system
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .glass {
-  background: rgba(9, 9, 11, 0.85);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(39, 39, 42, 0.6);
+  background: rgba(7, 8, 22, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(27, 33, 68, 0.7);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   GRADIENT TEXT
+   GRADIENT TEXT — Unified blue-to-purple
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .gradient-text {
@@ -238,14 +238,14 @@ body {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .skeleton {
-  background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%);
+  background: linear-gradient(90deg, #0c0f24 25%, #1b2144 50%, #0c0f24 75%);
   background-size: 200% 100%;
   animation: shimmer 1.8s ease-in-out infinite;
   border-radius: 8px;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SCROLLBAR
+   SCROLLBAR — Navy theme
    ═══════════════════════════════════════════════════════════════════════════ */
 
 ::-webkit-scrollbar {
@@ -257,24 +257,24 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #1b2144;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
+  background: #2d3a6e;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: #1b2144;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
+  background: #2d3a6e;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SECTION SYSTEM
+   SECTION SYSTEM — Consistent layout tokens
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .section-container {
@@ -292,11 +292,12 @@ body {
 .section-title {
   font-family: var(--font-heading);
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
   margin-bottom: 0.75rem;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   line-height: 1.2;
+  color: #ffffff;
 }
 
 @media (min-width: 640px) {
@@ -307,34 +308,34 @@ body {
 
 .section-subtitle {
   text-align: center;
-  color: var(--color-text-secondary);
+  color: #9ca3af;
   max-width: 560px;
   margin: 0 auto 3.5rem;
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   CARD HOVER SYSTEM
+   CARD HOVER SYSTEM — Navy glow
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .card-hover {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
   transform: translateY(-2px);
-  border-color: var(--color-border-hover);
+  border-color: rgba(99, 102, 241, 0.4);
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.2),
-    0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(99, 102, 241, 0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DOT PATTERN BACKGROUND
+   DOT PATTERN BACKGROUND — Subtle navy dots
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .dot-pattern {
-  background-image: radial-gradient(circle, rgba(63, 63, 70, 0.4) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }

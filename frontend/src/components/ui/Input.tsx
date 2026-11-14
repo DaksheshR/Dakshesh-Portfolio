@@ -27,12 +27,11 @@ type InputProps = InputFieldProps | TextareaFieldProps;
 
 const inputBaseStyles = cn(
   "w-full px-3.5 py-2.5 rounded-lg border text-sm transition-all duration-200",
-  "bg-white dark:bg-surface-elevated-dark",
-  "border-border-light dark:border-border-dark",
-  "text-text-primary-light dark:text-text-primary-dark",
-  "placeholder:text-text-muted-light dark:placeholder:text-text-muted-dark",
-  "focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500",
-  "hover:border-border-hover-light dark:hover:border-border-hover-dark"
+  "bg-[#0a0d1e] border-[#1b2144]",
+  "text-text-primary-dark",
+  "placeholder:text-text-muted-dark",
+  "focus:outline-none focus:ring-2 focus:ring-primary-500/25 focus:border-primary-500/60",
+  "hover:border-[#2d3a6e]"
 );
 
 export default function Input(props: InputProps) {
@@ -43,7 +42,7 @@ export default function Input(props: InputProps) {
       {label && (
         <label
           htmlFor={id}
-          className="block text-sm font-medium text-text-primary-light dark:text-text-primary-dark"
+          className="block text-sm font-medium text-text-primary-dark"
         >
           {label}
         </label>

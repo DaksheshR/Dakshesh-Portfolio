@@ -1,5 +1,6 @@
 /**
- * Reusable Card component with glassmorphism and hover effects.
+ * Reusable Card component — Navy translucent cards with glowing borders.
+ * Matches the Education section's premium dark design system.
  */
 
 import { cn } from "@/utils/helpers";
@@ -13,9 +14,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variantStyles: Record<string, string> = {
-  default: "bg-[#111113] border border-[#27272a]",
+  default: "bg-[#0c0f24]/90 border border-[#1b2144]/80 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.35)]",
   glass: "glass",
-  bordered: "bg-[#111113] border border-primary-500/30",
+  bordered: "bg-[#0c0f24]/90 border border-primary-500/25 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.35)]",
 };
 
 const paddingStyles: Record<string, string> = {
@@ -36,10 +37,10 @@ export default function Card({
   return (
     <div
       className={cn(
-        "rounded-xl",
+        "rounded-2xl transition-all duration-300",
         variantStyles[variant],
         paddingStyles[padding],
-        hover && "card-hover",
+        hover && "card-hover hover:border-primary-500/40 hover:shadow-[0_4px_30px_rgba(0,0,0,0.35),0_0_15px_rgba(99,102,241,0.1)]",
         className
       )}
       {...props}

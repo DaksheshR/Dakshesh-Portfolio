@@ -450,8 +450,9 @@ export default function Skills({ data }: SkillsProps) {
   }, [groupedSkills]);
 
   return (
-    <section id="skills" className="relative border-t border-border-light dark:border-border-dark overflow-hidden">
-      {/* Ambient background glow */}
+    <section id="skills" className="relative border-t border-[#27272a]/60 overflow-hidden bg-[#070816]">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-indigo-600/5 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="section-container relative z-10">
@@ -463,8 +464,17 @@ export default function Skills({ data }: SkillsProps) {
           transition={{ duration: 0.5 }}
           className="text-center w-full mb-10 sm:mb-12"
         >
-          <h2 className="section-title text-center">
-            My <span className="gradient-text">Skills</span>
+          {/* Pill Badge */}
+          <div className="flex items-center justify-center gap-2.5 mb-3.5">
+            <span className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-primary-500/50" />
+            <span className="px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase bg-primary-500/10 text-primary-400 border border-primary-500/25">
+              EXPERTISE
+            </span>
+            <span className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-primary-500/50" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
+            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-indigo-400 to-purple-400">Skills</span>
           </h2>
           <p className="section-subtitle text-center mx-auto">
             Technologies and tools I work with

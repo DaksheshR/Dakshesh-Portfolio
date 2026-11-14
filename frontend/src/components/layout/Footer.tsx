@@ -1,20 +1,24 @@
 /**
  * Footer component with social links and copyright.
+ * Unified navy/indigo design system.
  */
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border-light dark:border-border-dark">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <footer className="relative bg-[#070816] border-t border-[#1b2144]/60 overflow-hidden">
+      {/* Subtle ambient glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-primary-600/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <span className="text-base font-semibold tracking-tight text-text-primary-light dark:text-text-primary-dark">
+            <span className="text-base font-semibold tracking-tight text-text-primary-dark">
               Dakshesh<span className="text-primary-500">.</span>
             </span>
-            <p className="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">
+            <p className="text-xs text-text-muted-dark mt-1">
               Building exceptional digital experiences
             </p>
           </div>
@@ -26,7 +30,7 @@ export default function Footer() {
               href="https://github.com/DaksheshR"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-muted-light dark:hover:bg-surface-elevated-dark transition-all duration-200"
+              className="p-2 rounded-lg text-text-muted-dark hover:text-primary-400 hover:bg-primary-500/10 transition-all duration-200"
               aria-label="GitHub"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -39,7 +43,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/dakshesh-r/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-muted-light dark:hover:bg-surface-elevated-dark transition-all duration-200"
+              className="p-2 rounded-lg text-text-muted-dark hover:text-primary-400 hover:bg-primary-500/10 transition-all duration-200"
               aria-label="LinkedIn"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +56,7 @@ export default function Footer() {
               href="https://leetcode.com/u/Dakshesh_R/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-text-muted-light dark:text-text-muted-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-muted-light dark:hover:bg-surface-elevated-dark transition-all duration-200"
+              className="p-2 rounded-lg text-text-muted-dark hover:text-primary-400 hover:bg-primary-500/10 transition-all duration-200"
               aria-label="LeetCode"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -63,7 +67,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-xs text-text-muted-light dark:text-text-muted-dark">
+          <p className="text-xs text-text-muted-dark">
             © {currentYear} Dakshesh. All rights reserved.
           </p>
         </div>

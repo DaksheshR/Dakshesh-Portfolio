@@ -124,7 +124,7 @@ I am a Computer Science graduate currently pursuing my MSc CS, with a strong int
             <div className="h-4 sm:h-6" aria-hidden="true" />
 
             {/* Stats Row with top margin above divider and padding below */}
-            <div className="mt-4 sm:mt-6 pt-6 sm:pt-8 border-t border-gray-800/80">
+            <div className="mt-4 sm:mt-6 pt-6 sm:pt-8 border-t border-primary-500/15">
               <div className="flex flex-wrap items-center gap-6 sm:gap-10">
                 {/* Stat 1: Degree */}
                 <div className="flex items-center gap-3">
@@ -150,7 +150,7 @@ I am a Computer Science graduate currently pursuing my MSc CS, with a strong int
                 </div>
 
                 {/* Stat 2: Projects Built (Dynamic) */}
-                <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-gray-800/80">
+                <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-primary-500/15">
                   <svg
                     className="w-5 h-5 text-purple-400 flex-shrink-0"
                     viewBox="0 0 24 24"
@@ -172,7 +172,7 @@ I am a Computer Science graduate currently pursuing my MSc CS, with a strong int
 
                 {/* Stat 3: Years Experience (Dynamic if > 0) */}
                 {yearsExperience > 0 && (
-                  <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-gray-800/80">
+                  <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-primary-500/15">
                     <svg
                       className="w-5 h-5 text-purple-400 flex-shrink-0"
                       viewBox="0 0 24 24"
@@ -196,7 +196,7 @@ I am a Computer Science graduate currently pursuing my MSc CS, with a strong int
 
                 {/* Stat 4: Happy Clients (Dynamic if > 0) */}
                 {happyClients > 0 && (
-                  <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-gray-800/80">
+                  <div className="flex items-center gap-3 pl-4 sm:pl-8 border-l border-primary-500/15">
                     <svg
                       className="w-5 h-5 text-purple-400 flex-shrink-0"
                       viewBox="0 0 24 24"

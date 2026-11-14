@@ -16,13 +16,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<string, string> = {
   primary:
-    "bg-primary-600 text-white hover:bg-primary-500 shadow-sm shadow-primary-600/10 hover:shadow-md hover:shadow-primary-600/20",
+    "bg-gradient-to-r from-primary-600 to-indigo-600 text-white hover:from-primary-500 hover:to-indigo-500 shadow-sm shadow-primary-600/20 hover:shadow-md hover:shadow-primary-500/30",
   secondary:
-    "bg-surface-muted-light dark:bg-surface-elevated-dark text-text-primary-light dark:text-text-primary-dark border border-border-light dark:border-border-dark hover:border-border-hover-light dark:hover:border-border-hover-dark hover:bg-surface-card-light dark:hover:bg-surface-muted-dark",
+    "bg-surface-elevated-dark text-text-primary-dark border border-border-dark hover:border-border-hover-dark hover:bg-surface-muted-dark",
   outline:
-    "border border-border-light dark:border-border-dark text-text-primary-light dark:text-text-primary-dark hover:bg-surface-muted-light dark:hover:bg-surface-elevated-dark hover:border-border-hover-light dark:hover:border-border-hover-dark",
+    "border border-border-dark text-text-primary-dark hover:bg-surface-elevated-dark hover:border-border-hover-dark",
   ghost:
-    "text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-muted-light dark:hover:bg-surface-elevated-dark hover:text-text-primary-light dark:hover:text-text-primary-dark",
+    "text-text-secondary-dark hover:bg-surface-elevated-dark hover:text-text-primary-dark",
   danger:
     "bg-red-600 text-white hover:bg-red-500 shadow-sm shadow-red-600/10",
 };
@@ -46,7 +46,7 @@ export default function Button({
     <button
       className={cn(
         "inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-light dark:focus-visible:ring-offset-surface-dark",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-dark",
         "active:scale-[0.98]",
         "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
         variantStyles[variant],

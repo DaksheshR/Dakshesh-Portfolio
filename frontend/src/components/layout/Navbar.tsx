@@ -97,7 +97,7 @@ export default function Navbar() {
               className={cn(
                 "px-3 py-1.5 rounded-md text-[13px] font-medium transition-all duration-200",
                 activeSection === link.href.slice(1)
-                  ? "text-white bg-[#18181b]"
+                  ? "text-white bg-primary-500/10 border border-primary-500/25"
                   : "text-gray-400 hover:text-white"
               )}
             >
@@ -111,7 +111,7 @@ export default function Navbar() {
           <button
             id="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg border border-border-dark hover:bg-surface-elevated-dark transition-colors cursor-pointer"
+            className="p-2 rounded-lg border border-[#1b2144] hover:bg-surface-elevated-dark transition-colors cursor-pointer"
             aria-label="Toggle mobile menu"
           >
             <svg
@@ -146,7 +146,7 @@ export default function Navbar() {
           isMobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="px-4 pb-3 pt-2 mt-2 mx-4 rounded-lg border border-border-dark bg-surface-card-dark space-y-0.5">
+        <div className="px-4 pb-3 pt-2 mt-2 mx-4 rounded-lg border border-[#1b2144] bg-[#0c0f24]/95 backdrop-blur-md space-y-0.5">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -155,7 +155,7 @@ export default function Navbar() {
               className={cn(
                 "block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200",
                 activeSection === link.href.slice(1)
-                  ? "text-white bg-[#18181b]"
+                  ? "text-white bg-primary-500/10"
                   : "text-gray-400 hover:text-white"
               )}
             >

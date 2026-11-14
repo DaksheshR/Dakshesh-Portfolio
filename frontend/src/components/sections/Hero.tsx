@@ -18,7 +18,6 @@ const typingTexts = [
   "Full Stack Developer",
   "UI/UX Enthusiast",
   "Problem Solver",
-  "Tech Innovator",
 ];
 
 export default function Hero({ data }: HeroProps) {
@@ -92,13 +91,13 @@ export default function Hero({ data }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#070816]"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-500/[0.08] rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-primary-400/[0.06] rounded-full blur-3xl animate-float delay-300" />
+        {/* Gradient orbs — navy/indigo ambient glows */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-600/10 rounded-full blur-[140px] animate-float" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-indigo-600/8 rounded-full blur-[140px] animate-float delay-300" />
         {/* Dot pattern */}
         <div className="absolute inset-0 dot-pattern opacity-60" />
       </div>
@@ -109,7 +108,7 @@ export default function Hero({ data }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gray-700/60 bg-black/40 backdrop-blur-md mb-8 shadow-sm"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-500/25 bg-[#0c0f24]/80 backdrop-blur-md mb-8 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -145,14 +144,14 @@ export default function Hero({ data }: HeroProps) {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="h-8 flex items-center justify-center mb-6"
         >
-          <span className="text-base sm:text-lg text-text-muted-light dark:text-text-muted-dark font-mono">
+          <span className="text-base sm:text-lg text-text-muted-dark font-mono">
             {"< "}
           </span>
-          <span className="text-base sm:text-lg text-primary-600 dark:text-primary-400 font-mono">
+          <span className="text-base sm:text-lg text-primary-400 font-mono">
             {displayText}
           </span>
           <span className="w-px h-5 bg-primary-500 ml-0.5 animate-pulse" />
-          <span className="text-base sm:text-lg text-text-muted-light dark:text-text-muted-dark font-mono">
+          <span className="text-base sm:text-lg text-text-muted-dark font-mono">
             {" />"}
           </span>
         </motion.div>
@@ -162,7 +161,7 @@ export default function Hero({ data }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-base text-text-secondary-light dark:text-text-secondary-dark max-w-xl mx-auto mb-10 leading-relaxed"
+          className="text-base text-text-secondary-dark max-w-xl mx-auto mb-10 leading-relaxed"
         >
           {tagline}
         </motion.p>
@@ -256,7 +255,7 @@ export default function Hero({ data }: HeroProps) {
         >
           <a
             href="#about"
-            className="inline-flex flex-col items-center text-text-muted-light dark:text-text-muted-dark hover:text-text-secondary-light dark:hover:text-text-secondary-dark transition-colors"
+            className="inline-flex flex-col items-center text-text-muted-dark hover:text-text-secondary-dark transition-colors"
           >
             <svg
               className="w-5 h-5 animate-bounce-slow"

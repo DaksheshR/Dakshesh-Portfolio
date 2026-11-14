@@ -177,7 +177,7 @@ export default function Projects({ data }: ProjectsProps) {
   return (
     <section
       id="projects"
-      className="relative border-t border-border-light dark:border-border-dark overflow-hidden py-20 sm:py-24"
+      className="relative border-t border-[#27272a]/60 overflow-hidden py-20 sm:py-24 bg-[#070816]"
     >
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-purple-600/5 rounded-full blur-[150px] pointer-events-none -z-10" />
@@ -216,7 +216,7 @@ export default function Projects({ data }: ProjectsProps) {
               onClick={() => setFilter("all")}
               className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
                 filter === "all"
-                  ? "bg-white text-gray-950 font-semibold shadow-[0_0_16px_rgba(255,255,255,0.3)]"
+                  ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold shadow-[0_0_16px_rgba(99,102,241,0.4)] border border-purple-400/30"
                   : "bg-[#090d21] text-gray-300 hover:text-white border border-[#1b2144] hover:border-gray-600"
               }`}
             >
@@ -227,7 +227,7 @@ export default function Projects({ data }: ProjectsProps) {
               onClick={() => setFilter("featured")}
               className={`inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
                 filter === "featured"
-                  ? "bg-white text-gray-950 font-semibold shadow-[0_0_16px_rgba(255,255,255,0.3)]"
+                  ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold shadow-[0_0_16px_rgba(99,102,241,0.4)] border border-purple-400/30"
                   : "bg-[#090d21] text-gray-300 hover:text-white border border-[#1b2144] hover:border-gray-600"
               }`}
             >

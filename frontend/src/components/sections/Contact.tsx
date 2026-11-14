@@ -80,18 +80,31 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative border-t border-border-light dark:border-border-dark">
-      <div className="section-container">
+    <section id="contact" className="relative border-t border-[#27272a]/60 bg-[#070816] overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-primary-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 -left-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+
+      <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title">
-            Get In <span className="gradient-text">Touch</span>
+          {/* Pill Badge */}
+          <div className="flex items-center justify-center gap-2.5 mb-3.5">
+            <span className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-primary-500/50" />
+            <span className="px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase bg-primary-500/10 text-primary-400 border border-primary-500/25">
+              CONTACT
+            </span>
+            <span className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-primary-500/50" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
+            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-indigo-400 to-purple-400">Touch</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="text-sm sm:text-base text-gray-400 max-w-md mx-auto mb-0">
             Have a project in mind or just want to say hi? I&apos;d love to hear
             from you!
           </p>
@@ -109,9 +122,9 @@ export default function Contact() {
             {/* Email card */}
             <Card hover>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-primary-500/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-primary-500/15 border border-primary-500/30 flex items-center justify-center flex-shrink-0">
                   <svg
-                    className="w-4 h-4 text-primary-500"
+                    className="w-4 h-4 text-primary-400"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -125,10 +138,10 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xs font-semibold text-text-primary-light dark:text-text-primary-dark">
+                  <h3 className="text-xs font-semibold text-text-primary-dark">
                     Email
                   </h3>
-                  <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                  <p className="text-xs text-text-secondary-dark">
                     rdakshesh800@gmail.com
                   </p>
                 </div>
@@ -138,9 +151,9 @@ export default function Contact() {
             {/* Location card */}
             <Card hover>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-primary-500/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-primary-500/15 border border-primary-500/30 flex items-center justify-center flex-shrink-0">
                   <svg
-                    className="w-4 h-4 text-primary-500"
+                    className="w-4 h-4 text-primary-400"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -159,10 +172,10 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xs font-semibold text-text-primary-light dark:text-text-primary-dark">
+                  <h3 className="text-xs font-semibold text-text-primary-dark">
                     Location
                   </h3>
-                  <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                  <p className="text-xs text-text-secondary-dark">
                     India
                   </p>
                 </div>
@@ -172,17 +185,17 @@ export default function Contact() {
             {/* Availability */}
             <Card hover>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-xs font-semibold text-text-primary-light dark:text-text-primary-dark">
+                  <h3 className="text-xs font-semibold text-text-primary-dark">
                     Availability
                   </h3>
-                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                  <p className="text-xs text-emerald-400 font-medium">
                     Open for opportunities
                   </p>
                 </div>
@@ -281,7 +294,7 @@ export default function Contact() {
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                    <p className="text-xs text-emerald-400 font-medium">
                       Message sent successfully! I&apos;ll get back to you soon.
                     </p>
                   </div>
@@ -302,7 +315,7 @@ export default function Contact() {
                         d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <p className="text-xs text-red-600 dark:text-red-400 font-medium">
+                    <p className="text-xs text-red-400 font-medium">
                       {errorMessage || "Something went wrong. Please try again later."}
                     </p>
                   </div>
