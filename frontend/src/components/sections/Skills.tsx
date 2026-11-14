@@ -473,8 +473,8 @@ export default function Skills({ data }: SkillsProps) {
             <span className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-primary-500/50" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-indigo-400 to-purple-400">Skills</span>
+          <h2 className="section-title text-center">
+            My <span className="gradient-text">Skills</span>
           </h2>
           <p className="section-subtitle text-center mx-auto">
             Technologies and tools I work with

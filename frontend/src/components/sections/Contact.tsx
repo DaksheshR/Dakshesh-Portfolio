@@ -91,6 +91,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
+          className="flex flex-col items-center text-center w-full mb-12 sm:mb-16"
         >
           {/* Pill Badge */}
           <div className="flex items-center justify-center gap-2.5 mb-3.5">
@@ -101,10 +102,10 @@ export default function Contact() {
             <span className="w-8 sm:w-12 h-px bg-gradient-to-l from-transparent to-primary-500/50" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-indigo-400 to-purple-400">Touch</span>
+          <h2 className="section-title text-center">
+            Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-sm sm:text-base text-gray-400 max-w-md mx-auto mb-0">
+          <p className="section-subtitle text-center mx-auto">
             Have a project in mind or just want to say hi? I&apos;d love to hear
             from you!
           </p>

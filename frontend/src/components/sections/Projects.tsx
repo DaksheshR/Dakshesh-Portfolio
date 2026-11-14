@@ -201,12 +201,12 @@ export default function Projects({ data }: ProjectsProps) {
           </div>
 
           {/* Title */}
-          <h2 className="section-title text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <h2 className="section-title text-center">
             My <span className="gradient-text">Projects</span>
           </h2>
 
           {/* Subtitle */}
-          <p className="section-subtitle text-center mx-auto text-sm sm:text-base text-gray-400 mt-2">
+          <p className="section-subtitle text-center mx-auto">
             A selection of projects I&apos;ve built and shipped
           </p>
 
