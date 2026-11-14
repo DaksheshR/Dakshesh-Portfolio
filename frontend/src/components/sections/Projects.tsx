@@ -679,18 +679,6 @@ function ProjectDetailModal({
             </span>
           )}
 
-          {/* Modal Thumbnail if available */}
-          {project.image && (
-            <div className="relative aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-[#060814] border border-[#1b2144]/80">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-
           {/* Title & Short Description with clearance from close button */}
           <div className="pr-8 sm:pr-10">
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">

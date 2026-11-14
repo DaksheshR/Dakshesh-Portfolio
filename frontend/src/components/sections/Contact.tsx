@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Input from "@/components/ui/Input";
-import { portfolioService } from "@/services/portfolio.service";
+import { emailService } from "@/services/email.service";
 import type { ContactFormData } from "@/types";
 
 export default function Contact() {
@@ -25,6 +25,7 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const validate = (): boolean => {
     const newErrors: Partial<ContactFormData> = {};
@@ -46,18 +47,24 @@ export default function Contact() {
 
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrorMessage("");
 
     try {
-      await portfolioService.submitContact(formData);
+      await emailService.sendContactEmail(formData);
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
       setErrors({});
-    } catch {
+    } catch (err: unknown) {
+      const axiosErr = err as { response?: { data?: { detail?: string } } };
+      const detail = axiosErr?.response?.data?.detail;
+      setErrorMessage(
+        detail || "Something went wrong. Please try again later."
+      );
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
       // Auto-clear notification
-      setTimeout(() => setSubmitStatus("idle"), 5000);
+      setTimeout(() => setSubmitStatus("idle"), 6000);
     }
   };
 
@@ -296,7 +303,7 @@ export default function Contact() {
                       />
                     </svg>
                     <p className="text-xs text-red-600 dark:text-red-400 font-medium">
-                      Something went wrong. Please try again later.
+                      {errorMessage || "Something went wrong. Please try again later."}
                     </p>
                   </div>
                 )}
