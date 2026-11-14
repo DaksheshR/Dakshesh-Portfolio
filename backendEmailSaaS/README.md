@@ -44,12 +44,53 @@ The server will be available at:
 
 ---
 
-## 📨 Testing the Endpoint
+## 🌐 How to Deploy to Render (Step-by-Step)
 
-You can test sending a test email using `curl`:
+### Step 1: Push your latest code to GitHub
 ```bash
-curl -X POST "http://localhost:8001/api/send-email" ^
-  -H "Content-Type: application/json" ^
-  -d "{\"name\":\"Test Visitor\",\"email\":\"test@example.com\",\"subject\":\"Project Inquiry\",\"message\":\"Hello Dakshesh, I would like to collaborate on a project!\"}"
+git add .
+git commit -m "Configure backendEmailSaaS for Render deployment"
+git push origin main
 ```
 
+### Step 2: Create a New Web Service on Render
+1. Go to your [Render Dashboard](https://dashboard.render.com/).
+2. Click **New +** → **Web Service**.
+3. Select **Build and deploy from a Git repository**, then choose your `Dakshesh-Portfolio` repository.
+4. Fill in the following settings:
+   - **Name**: `portfolio-email-saas` (or any name you prefer)
+   - **Region**: Closest to you (e.g., *Singapore* or *Oregon*)
+   - **Branch**: `main`
+   - **Root Directory**: `backendEmailSaaS`  *(IMPORTANT: Do not skip this!)*
+   - **Runtime**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt` (or `./build.sh`)
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - **Instance Type**: `Free`
+
+### Step 3: Add Environment Variables in Render
+Under the **Environment Variables** section in the Render setup, add:
+
+| Key | Value | Notes |
+|---|---|---|
+| `RESEND_API_KEY` | `re_123...` | Your Resend API key |
+| `RECIPIENT_EMAIL` | `rdakshesh800@gmail.com` | Where you receive messages |
+| `SENDER_EMAIL` | `Portfolio Contact <onboarding@resend.dev>` | Free tier sender |
+| `ALLOWED_ORIGINS` | `*` | Allows inquiries from any client |
+
+Click **Create Web Service**. Render will now build and deploy the service.
+
+### Step 4: Connect Your Frontend to the Deployed Service
+Once Render finishes deploying, copy your live service URL (e.g., `https://portfolio-email-saas.onrender.com`).
+
+1. **In Vercel (Production Frontend):**
+   - Go to your Vercel Project Settings → **Environment Variables**.
+   - Add or update:
+     - **Key**: `NEXT_PUBLIC_EMAIL_SERVICE_URL`
+     - **Value**: `https://portfolio-email-saas.onrender.com/api/send-email`
+   - Trigger a redeploy on Vercel to apply the new variable.
+
+2. **In Local Frontend (`frontend/.env.local`):**
+   - You can test with either your local service or the deployed Render URL:
+     ```env
+     NEXT_PUBLIC_EMAIL_SERVICE_URL=https://portfolio-email-saas.onrender.com/api/send-email
+     ```
