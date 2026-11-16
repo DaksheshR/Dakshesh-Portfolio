@@ -13,6 +13,7 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
+import PrewarmBackends from "@/components/utils/PrewarmBackends";
 import type {
   HeroSection,
   AboutSection,
@@ -70,6 +71,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <PrewarmBackends />
       <Navbar />
       <main>
         <Hero data={hero} />
